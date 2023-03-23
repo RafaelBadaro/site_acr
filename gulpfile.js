@@ -3,10 +3,22 @@ const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
+const newer = require('gulp-newer');
 const sass = require('gulp-dart-sass');
 const prefix = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const gcmqp = require('gulp-css-mqpacker');
+
+
+// Copy Bootstrap JS-files
+gulp.task('copy-js', () => {
+    return gulp.src([
+        'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+    ])
+        .pipe(newer('./dist/js'))
+        .pipe(notify({message: 'Copy JS files'}))
+        .pipe(gulp.dest('./dist/js'));
+});
 
 // Compile sass into CSS (/src/css/)
 gulp.task('sass', () =>
@@ -27,10 +39,15 @@ gulp.task('sass', () =>
         .pipe(gcmqp())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('css'))
+        .pipe(gulp.dest('./dist/css'))
 );
 
 gulp.task('browser-sync', () => {
     browserSync.init({
+        server: {
+            baseDir: './dist',
+            directory: true,
+        },
         server: {
             startPath: 'index.html',
             port: 7777,
@@ -47,4 +64,4 @@ gulp.task('browser-sync', () => {
 });
 
 gulp.task('build', gulp.series('sass'));
-gulp.task('default', gulp.series('sass', 'browser-sync'));
+gulp.task('default', gulp.series('copy-js', 'sass', 'browser-sync'));
