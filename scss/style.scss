@@ -1,0 +1,24 @@
+/* import Font Awesome and Google font(s) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+/* import the necessary Bootstrap files */
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+/* override Bootstrap variables (before importing Bootstrap!!!) */
+@import 'variables';
+
+/* finally, import Bootstrap to set the changes! */
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+/* create custom styles/partials */
+@import 'reboot';
+@import 'card';
+@import 'animation';
+@import 'aEmpresa';
+@import 'modal';
+@import 'cases';
+@import 'cv';
+@import 'footer';
+
