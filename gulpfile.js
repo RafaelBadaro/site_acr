@@ -9,6 +9,21 @@ const prefix = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const gcmqp = require('gulp-css-mqpacker');
 
+var configuration = {
+    paths: {
+        src: {
+            html: '*.html',
+        },
+        dist: './dist'
+    }
+};
+
+// Gulp task to copy HTML files to output directory
+gulp.task('copy-html', () => {
+    return gulp.src(configuration.paths.src.html)
+        .pipe(gulp.dest(configuration.paths.dist));
+});
+
 
 // Copy Bootstrap JS-files
 gulp.task('copy-js', () => {
@@ -21,7 +36,7 @@ gulp.task('copy-js', () => {
 });
 
 // Compile sass into CSS (/src/css/)
-gulp.task('sass', () =>
+gulp.task('copy-sass', () =>
     gulp
         .src('./scss/style.scss')
         .pipe(
@@ -42,41 +57,37 @@ gulp.task('sass', () =>
         .pipe(gulp.dest('./dist/css'))
 );
 
-gulp.task('copy-index.html', () => {
-    return gulp.src('index.html')
-        .pipe(newer('./dist/index.html'))
-        .pipe(notify({ message: 'Copy index.html' }))
-        .pipe(gulp.dest('./dist/index.html'));
-});
+// gulp.task('copy-index.html', () => {
+//     return gulp.src('index.html', {base: './'})
+//         .pipe(notify({ message: 'Copy index.html' }))
+//         .pipe(gulp.dest('./dist/index.html'));
+// });
 
-gulp.task('copy-cases.html', () => {
-    return gulp.src('cases.html')
-        .pipe(newer('./dist/cases.html'))
-        .pipe(notify({ message: 'Copy cases.html' }))
-        .pipe(gulp.dest('./dist/cases.html'));
-});
+// gulp.task('copy-cases.html', () => {
+//     return gulp.src('cases.html')
+//         .pipe(newer('./dist/cases.html'))
+//         .pipe(notify({ message: 'Copy cases.html' }))
+//         .pipe(gulp.dest('./dist/cases.html'));
+// });
 
 
 
 gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
-            baseDir: './dist',
-            directory: true,
-        },
-        startPath: 'index.html',
-        port: 7777,
-        ui: {
-            port: 7779,
-        },
+            startPath: 'index.html',
+            port: 7777,
+            ui: {
+                port: 7779,
+            },
+        }
     });
-    gulp.watch('./scss/**/*.scss', gulp.series('sass'));
-    gulp.watch('index.html').on('change', browserSync.reload);
+    gulp.watch('./scss/**/*.scss', gulp.series('copy-sass'));
     gulp.watch('*.html').on('change', browserSync.reload);
     gulp.watch('*/*.js').on('change', browserSync.reload);
     gulp.watch('*/*.css').on('change', browserSync.reload);
     gulp.watch('./dist/**/*.{html,css,js}').on('change', browserSync.reload);
 });
 
-gulp.task('build', gulp.series('sass'));
-gulp.task('default', gulp.series('copy-js', 'sass', 'copy-index.html', 'copy-cases.html', 'browser-sync'));
+gulp.task('build', gulp.series('copy-html', 'copy-js', 'copy-sass'));
+gulp.task('default', gulp.series('copy-html', 'copy-js', 'copy-sass', 'browser-sync'));
