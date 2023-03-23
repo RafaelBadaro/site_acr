@@ -57,20 +57,6 @@ gulp.task('copy-sass', () =>
         .pipe(gulp.dest('./dist/css'))
 );
 
-// gulp.task('copy-index.html', () => {
-//     return gulp.src('index.html', {base: './'})
-//         .pipe(notify({ message: 'Copy index.html' }))
-//         .pipe(gulp.dest('./dist/index.html'));
-// });
-
-// gulp.task('copy-cases.html', () => {
-//     return gulp.src('cases.html')
-//         .pipe(newer('./dist/cases.html'))
-//         .pipe(notify({ message: 'Copy cases.html' }))
-//         .pipe(gulp.dest('./dist/cases.html'));
-// });
-
-
 
 gulp.task('browser-sync', () => {
     browserSync.init({
