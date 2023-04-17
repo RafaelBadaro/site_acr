@@ -57,7 +57,13 @@ gulp.task('copy-sass', () =>
         .pipe(gulp.dest('./dist/css'))
 );
 
-
+// Copy assets
+gulp.task('copy-assets', () => {
+    return gulp.src('.assets/img')
+        .pipe(newer('.assets/img'))
+        .pipe(notify({ message: 'Copy assets' }))
+        .pipe(gulp.dest('./dist/assets/img'));
+});
 gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
@@ -75,5 +81,5 @@ gulp.task('browser-sync', () => {
     gulp.watch('./dist/**/*.{html,css,js}').on('change', browserSync.reload);
 });
 
-gulp.task('build', gulp.series('copy-html', 'copy-js', 'copy-sass'));
-gulp.task('default', gulp.series('copy-html', 'copy-js', 'copy-sass', 'browser-sync'));
+gulp.task('build', gulp.series('copy-html', 'copy-js', 'copy-sass', 'copy-assets'));
+gulp.task('default', gulp.series('copy-html', 'copy-js', 'copy-sass', 'browser-sync', 'copy-assets'));
