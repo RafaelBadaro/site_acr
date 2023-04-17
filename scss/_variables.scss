@@ -11,6 +11,18 @@ $black: black;
 
 $yellow_pastel: #bd9f19;
 
+// paleta de cores
+$ouro: #FFD700;
+$azul_escuro: #002147;
+$creme: #FFFDD0;
+$verde_claro: #76FF7A;
+
+/*
+Quanto às cores do site podemos 
+adotar a logo ACR (ouro) em fundo azul escuro (em cima) 
+e no texto, adotar fundo creme ou verde muito claro.
+O uso de letra sombreada no título não é uma exigência, mas combina. Aceito sugestões de modernização.
+*/
 
 $theme-colors: map-merge(
   $theme-colors,
