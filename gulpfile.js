@@ -82,5 +82,5 @@ gulp.task('browser-sync', () => {
     gulp.watch('./dist/**/*.{html,css,js}').on('change', browserSync.reload);
 });
 
-gulp.task('build', gulp.series('copy-html', 'copy-js', 'copy-sass', 'copy-assets'));
-gulp.task('default', gulp.series('copy-html', 'copy-js', 'copy-sass', 'browser-sync', 'copy-assets'));
+gulp.task('build', gulp.series('copy-html', 'copy-js', 'copy-sass'));
+gulp.task('default', gulp.series('copy-html', 'copy-js', 'copy-sass', 'browser-sync'));
