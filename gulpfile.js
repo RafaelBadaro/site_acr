@@ -57,13 +57,14 @@ gulp.task('copy-sass', () =>
         .pipe(gulp.dest('./dist/css'))
 );
 
-// Copy assets
-gulp.task('copy-assets', () => {
-    return gulp.src('.assets/img')
-        .pipe(newer('.assets/img/*.png'))
-        .pipe(notify({ message: 'Copy assets' }))
-        .pipe(gulp.dest('./dist/assets/img'));
-});
+// // Copy assets
+// gulp.task('copy-assets', () => {
+//     return gulp.src('.assets/img')
+//         .pipe(newer('.assets/img/*.png'))
+//         .pipe(notify({ message: 'Copy assets' }))
+//         .pipe(gulp.dest('./dist/assets/img'));
+// });
+
 gulp.task('browser-sync', () => {
     browserSync.init({
         server: {
