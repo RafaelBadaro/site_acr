@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    color: $white;
+    color: $creme;
     font-family: $fontstack;
 
     .navbar {
@@ -22,20 +22,40 @@ body {
         .navbar-brand {}
 
         // CSS das opções da navbar
-        .nav-link.active {}
+        .nav-link.active {
+            color: $creme;
+        }
 
         .nav-link.active:hover {
-            box-shadow: inset 0 -1px 0 0 $black;
+            box-shadow: inset 0 -1px 0 0 $creme;
             transition: box-shadow 0.2s ease-in-out;
         }
+    }
+
+    #header {
+        color: $azul_escuro;
+        background-image: linear-gradient($creme, $verde_claro);
+    }
+
+    #a_empresa {
+        color: $black;
+    }
+
+    #dicas{
+        color: $azul_escuro;
+        background-image: linear-gradient($verde_claro, $creme);
     }
 
     #confiraDicas {
         a {
             text-decoration: none;
-            color: $white;
-            border-bottom: 1px solid $white;
+            color: $azul_escuro;
+            border-bottom: 1px solid $azul_escuro;;
             padding-bottom: 1px;
         }
+    }
+
+    #contatos {
+        color: $creme;
     }
 }

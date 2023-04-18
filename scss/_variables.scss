@@ -1,21 +1,15 @@
 // override BS5 variables and custom variables mixins
 
 $fontstack: 'Mukta', sans-serif;
-$red: #E63946;
 $white: #ffffff;
-$light_blue: #A8DADC;
-$blue: #457B9D;
-$darkblue: #1D3557;
-$grey: #606669;
 $black: black;
-
-$yellow_pastel: #bd9f19;
+$grey: #606669;
 
 // paleta de cores
-$ouro: #FFD700;
-$azul_escuro: #002147;
-$creme: #FFFDD0;
-$verde_claro: #76FF7A;
+$ouro: #FFD700; // gold
+$azul_escuro: #002147; // Oxford Blue
+$creme: #FFFDD0; // Cream
+$verde_claro: #D0F0C0; //Tea green
 
 /*
 Quanto às cores do site podemos 
@@ -27,9 +21,11 @@ O uso de letra sombreada no título não é uma exigência, mas combina. Aceito 
 $theme-colors: map-merge(
   $theme-colors,
   (
-    'primary': $white,
-    'secondary': $grey,
-    'darkblue': $darkblue
+    'ouro': $ouro,
+    'azul_escuro': $azul_escuro,
+    'creme': $creme,
+    'verde_claro': $verde_claro
   )
 );
+
 
