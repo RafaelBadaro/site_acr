@@ -60,7 +60,7 @@ gulp.task('copy-sass', () =>
 // Copy assets
 gulp.task('copy-assets', () => {
     return gulp.src('.assets/img')
-        .pipe(newer('.assets/img'))
+        .pipe(newer('.assets/img/*.png'))
         .pipe(notify({ message: 'Copy assets' }))
         .pipe(gulp.dest('./dist/assets/img'));
 });
